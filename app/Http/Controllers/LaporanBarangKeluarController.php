@@ -19,25 +19,29 @@ class LaporanBarangKeluarController extends Controller
     }
 
     /**
-     * Get Data 
+     * Get Data with customer name
      */
     public function getData(Request $request)
     {
         $tanggalMulai = $request->input('tanggal_mulai');
         $tanggalSelesai = $request->input('tanggal_selesai');
-    
-        $barangKeluar = BarangKeluar::query();
-    
-        if ($tanggalMulai && $tanggalSelesai) {
-            $barangKeluar->whereBetween('tanggal_keluar', [$tanggalMulai, $tanggalSelesai]);
-        }
-    
-        $data = $barangKeluar->get();
 
-        if (empty($tanggalMulai) && empty($tanggalSelesai)) {
-            $data = BarangKeluar::all();
+        $query = BarangKeluar::with('customer');
+
+        if ($tanggalMulai && $tanggalSelesai) {
+            $query->whereBetween('tanggal_keluar', [$tanggalMulai, $tanggalSelesai]);
         }
-    
+
+        $data = $query->get()->map(function ($item) {
+            return [
+                'kode_transaksi' => $item->kode_transaksi,
+                'tanggal_keluar' => $item->tanggal_keluar,
+                'nama_barang'    => $item->nama_barang,
+                'jumlah_keluar'  => $item->jumlah_keluar,
+                'customer'       => $item->customer ? $item->customer->customer : '',
+            ];
+        });
+
         return response()->json($data);
     }
 
@@ -48,22 +52,17 @@ class LaporanBarangKeluarController extends Controller
     {
         $tanggalMulai = $request->input('tanggal_mulai');
         $tanggalSelesai = $request->input('tanggal_selesai');
-    
-        $barangKeluar = BarangKeluar::query();
-    
+
+        $query = BarangKeluar::with('customer');
+
         if ($tanggalMulai && $tanggalSelesai) {
-            $barangKeluar->whereBetween('tanggal_keluar', [$tanggalMulai, $tanggalSelesai]);
+            $query->whereBetween('tanggal_keluar', [$tanggalMulai, $tanggalSelesai]);
         }
-    
-        if ($tanggalMulai !== null && $tanggalSelesai !== null) {
-            $data = $barangKeluar->get();
-        } else {
-            $data = BarangKeluar::all();
-        }
-        
-        //Generate PDF
+
+        $data = $query->get(); // collection of objects with relation
+
         $dompdf = new Dompdf();
-        $html = view('/laporan-barang-keluar/print-barang-keluar', compact('data', 'tanggalMulai', 'tanggalSelesai'))->render();
+        $html = view('laporan-barang-keluar.print-barang-keluar', compact('data', 'tanggalMulai', 'tanggalSelesai'))->render();
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'landscape');
         $dompdf->render();
@@ -71,59 +70,11 @@ class LaporanBarangKeluarController extends Controller
     }
 
     /**
-     * Get Customer
+     * Get Customer (optional, jika masih butuh untuk API)
      */
-    public function getcustomer()
+    public function getCustomer()
     {
         $customer = Customer::all();
         return response()->json($customer);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

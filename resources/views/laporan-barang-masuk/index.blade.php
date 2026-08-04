@@ -25,7 +25,7 @@
                                 <input type="date" class="form-control" name="tanggal_selesai" id="tanggal_selesai">
                             </div>
                             <div class="col-md-2 d-flex align-items-end">
-                                <button type="submit" class="btn btn-primary">Filter</button>
+                                <button type="button" id="btn_filter" class="btn btn-primary">Filter</button>
                                 <button type="button" class="btn btn-danger" id="refresh_btn">Refresh</button>
                             </div>
                         </div>
@@ -58,89 +58,77 @@
 
 <script>
     $(document).ready(function() {
-    var table = $('#table_id').DataTable({ paging: true }); // Simpan objek DataTable dalam variabel
+        var table = $('#table_id').DataTable({ paging: true });
 
-    loadData(); // Panggil fungsi loadData saat halaman dimuat
+        loadData(); // Panggil saat halaman dimuat
 
-    $('#filter_form').submit(function(event) {
-        event.preventDefault();
-        loadData(); // Panggil fungsi loadData saat tombol filter ditekan
-    });
+        $('#filter_form').submit(function(event) {
+            event.preventDefault();
+            loadData();
+        });
 
-    $('#refresh_btn').on('click', function() {
-        refreshTable();
-    });
+        $('#btn_filter').on('click', function(event) {
+            event.preventDefault();
+            loadData();
+        });
 
-    // Fungsi load data berdasarkan range tanggal_mulai dan tanggal_selesai
-    function loadData() {
-        var tanggalMulai = $('#tanggal_mulai').val();
-        var tanggalSelesai = $('#tanggal_selesai').val();
+        $('#refresh_btn').on('click', function() {
+            $('#filter_form')[0].reset();
+            loadData();
+        });
 
-        $.ajax({
-            url: '/laporan-barang-masuk/get-data',
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                tanggal_mulai: tanggalMulai,
-                tanggal_selesai: tanggalSelesai
-            },
-            success: function(response) {
-                table.clear().draw(); // Hapus data yang sudah ada dari DataTable sebelum menambahkan data yang baru
+        function loadData() {
+            var tanggalMulai = $('#tanggal_mulai').val();
+            var tanggalSelesai = $('#tanggal_selesai').val();
 
-                if (response.length > 0) {
-                    $.each(response, function(index, item) {
-                        getSupplierName(item.supplier_id, function(supplier) {
+            $.ajax({
+                url: '/laporan-barang-masuk/get-data',
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    tanggal_mulai: tanggalMulai,
+                    tanggal_selesai: tanggalSelesai
+                },
+                success: function(response) {
+                    table.clear().draw();
+
+                    if (response.length > 0) {
+                        $.each(response, function(index, item) {
                             var row = [
                                 (index + 1),
                                 item.kode_transaksi,
                                 item.tanggal_masuk,
                                 item.nama_barang,
                                 item.jumlah_masuk,
-                                supplier
+                                item.supplier // langsung dari response
                             ];
-                            table.row.add(row).draw(false); // Tambahkan data yang baru ke DataTable
+                            table.row.add(row).draw(false);
                         });
-                    });
-                } else {
-                    var emptyRow = ['','Tidak ada data yang tersedia.', '', '', '', '', ''];
-                    table.row.add(emptyRow).draw(false); // Tambahkan baris kosong ke DataTable
+                        table.draw(); // redraw sekali di akhir
+                    } else {
+                        table.row.add(['', 'Tidak ada data', '', '', '', '']).draw();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                    alert('Gagal mengambil data. Periksa console.');
                 }
-            },
-            error: function(xhr, status, error) {
-                console.log(error);
-            }
-        });
-
-        function getSupplierName(supplierId, callback) {
-            $.getJSON('{{ url('api/supplier') }}', function(suppliers) {
-                var supplier = suppliers.find(function(s) {
-                    return s.id === supplierId;
-                });
-                callback(supplier ? supplier.supplier : '');
             });
         }
-    }
 
-    // Fungsi Refresh Tabel
-    function refreshTable() {
-        $('#filter_form')[0].reset();
-        loadData();
-    }
+        // Print PDF
+        $('#print-barang-masuk').on('click', function() {
+            var tanggalMulai = $('#tanggal_mulai').val();
+            var tanggalSelesai = $('#tanggal_selesai').val();
 
-    // Print barang masuk
-    $('#print-barang-masuk').on('click', function() {
-        var tanggalMulai = $('#tanggal_mulai').val();
-        var tanggalSelesai = $('#tanggal_selesai').val();
+            var url = '/laporan-barang-masuk/print-barang-masuk';
 
-        var url = '/laporan-barang-masuk/print-barang-masuk';
+            if (tanggalMulai && tanggalSelesai) {
+                url += '?tanggal_mulai=' + tanggalMulai + '&tanggal_selesai=' + tanggalSelesai;
+            }
 
-        if (tanggalMulai && tanggalSelesai) {
-            url += '?tanggal_mulai=' + tanggalMulai + '&tanggal_selesai=' + tanggalSelesai;
-        }
-
-        window.location.href = url;
+            window.location.href = url;
+        });
     });
-});
-
 </script>
 @endsection

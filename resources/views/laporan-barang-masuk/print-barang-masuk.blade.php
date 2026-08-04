@@ -5,7 +5,7 @@
         body {
             font-family: Arial, sans-serif;
         }
-        h1, p{
+        h1, p {
             text-align: center;
             margin-bottom: 20px;
         }
@@ -33,11 +33,10 @@
 <body>
     <h1>Laporan Barang Masuk</h1>
     @if ($tanggalMulai && $tanggalSelesai)
-        <p>Rentang Tanggal : {{ $tanggalMulai }} - {{ $tanggalSelesai }}<p>
+        <p>Rentang Tanggal : {{ $tanggalMulai }} - {{ $tanggalSelesai }}</p>
     @else
         <p>Rentang Tanggal : Semua</p>
     @endif
-    
 
     <table>
         <thead>
@@ -51,21 +50,25 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($data as $index => $item)
+            @forelse($data as $index => $item)
             <tr>
                 <td>{{ $index + 1 }}</td>
                 <td>{{ $item->kode_transaksi }}</td>
                 <td>{{ $item->tanggal_masuk }}</td>
-                <td>{{ $item->nama_barang}} </td>
-                <td>{{ $item->jumlah_masuk}} </td>
-                <td>{{ $item->supplier->supplier}} </td>
+                <td>{{ $item->nama_barang }}</td>
+                <td>{{ $item->jumlah_masuk }}</td>
+                <td>{{ $item->supplier->supplier ?? '-' }}</td>
             </tr>
-            @endforeach
+            @empty
+            <tr>
+                <td colspan="6">Tidak ada data</td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
 
     <div class="footer">
-        Dicetak oleh: {{ auth()->user()->name }}<br>
+        Dicetak oleh: {{ auth()->user()->name ?? 'Admin' }}<br>
         Tanggal: {{ date('d-m-Y') }}
     </div>
 </body>

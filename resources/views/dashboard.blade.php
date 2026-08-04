@@ -83,7 +83,7 @@
   <div class="col-lg-6 col-md-6 col-sm-6 col-6">
     <div class="card">
       <div class="card-header">
-        <h4>Stok Mencapai Batas Minimum</h4>
+        <h4>Semua Stok Barang</h4>
       </div>
       <div class="card-body">
         <table class="table">
@@ -96,14 +96,18 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($barangMinimum as $barang)
+            @forelse ($barangMinimum as $barang)
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $barang->kode_barang }}</td>
                 <td>{{ $barang->nama_barang }}</td>
-                <td><span class="badge badge-warning"> {{ $barang->stok }}</span></td>
+                <td><span class="badge badge-warning">{{ $barang->stok }}</span></td>
               </tr>
-            @endforeach
+            @empty
+              <tr>
+                <td colspan="4" class="text-center">Tidak ada barang yang mencapai batas minimum</td>
+              </tr>
+            @endforelse
           </tbody>
         </table>
       </div>

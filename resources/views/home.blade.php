@@ -1108,15 +1108,11 @@ Terus meningkatkan kualitas pelayanan, profesionalisme, dan inovasi untuk memenu
                 </p>
                 <div class="contact-detail">
                     <span class="label">Phone</span>
-                    <span class="value">123-456-7890<br>123-456-7890</span>
-                </div>
-                <div class="contact-detail">
-                    <span class="label">Email</span>
-                    <span class="value">hello@reallygreatsite.com<br>hello@reallygreatsite.com</span>
+                    <span class="value">+62 821-3518-1255</span>
                 </div>
                 <div class="contact-detail">
                     <span class="label">Website</span>
-                    <span class="value">www.reallygreatsite.com<br>www.reallygreatsite.com</span>
+                    <span class="value"><a href="https://inventory.hanstd.com" target="_blank" rel="noopener noreferrer">https://inventory.hanstd.com</a></span>
                 </div>
             </div>
             <div class="contact-visual">

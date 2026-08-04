@@ -31,13 +31,12 @@
     </style>
 </head>
 <body>
-    <h1>Laporan Barang Masuk</h1>
+    <h1>Laporan Barang Keluar</h1>
     @if ($tanggalMulai && $tanggalSelesai)
-        <p>Rentang Tanggal : {{ $tanggalMulai }} - {{ $tanggalSelesai }}<p>
+        <p>Rentang Tanggal : {{ $tanggalMulai }} - {{ $tanggalSelesai }}</p>
     @else
         <p>Rentang Tanggal : Semua</p>
     @endif
-    
 
     <table>
         <thead>
@@ -47,7 +46,7 @@
                 <th>Tanggal Keluar</th>
                 <th>Nama Barang</th>
                 <th>Jumlah Keluar</th>
-                <th>Supplier</th>
+                <th>Customer</th>
             </tr>
         </thead>
         <tbody>
@@ -57,8 +56,8 @@
                 <td>{{ $item->kode_transaksi }}</td>
                 <td>{{ $item->tanggal_keluar }}</td>
                 <td>{{ $item->nama_barang}} </td>
-                <td>{{ $item->jumlah_keluar}} </td>
-                <td>{{ $item->customer->customer}} </td>
+                <td>{{ $item->jumlah_keluar }} </td>
+                <td>{{ $item->customer->customer ?? '-' }}</td>
             </tr>
             @endforeach
         </tbody>

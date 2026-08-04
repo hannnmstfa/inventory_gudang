@@ -37,9 +37,8 @@ class DashboardController extends Controller
                 return $data;
         });
     
-        $barangMinimum = Barang::where('stok', '<=', 10)->get();
-        
-                                
+        $barangMinimum = Barang::all();
+
         return view('dashboard', [
             'barang'            => $barangCount,
             'barangMasuk'       => $barangMasukCount,
