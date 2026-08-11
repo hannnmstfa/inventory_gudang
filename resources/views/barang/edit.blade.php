@@ -33,11 +33,7 @@
                 <label>Jenis Barang</label>
                 <select class="form-control" name="jenis_id" id="edit_jenis_id">
                   @foreach ($jenis_barangs as $jenis)
-                  @if (old('jenis_id', $jenis->jenis_barang) == $jenis->id)
-                  <option value="{{ $jenis->id }}" selected>{{ $jenis->jenis_barang }}</option>
-                  @else
-                  <option value="{{ $jenis->id }}">{{ $jenis->jenis_barang }}</option>
-                  @endif
+                    <option value="{{ $jenis->id }}">{{ $jenis->jenis_barang }}</option>
                   @endforeach
                 </select>
               </div>
@@ -46,11 +42,7 @@
                 <label>Satuan Barang</label>
                 <select class="form-control" name="satuan_id" id="edit_satuan_id">
                   @foreach ($satuans as $satuan)
-                  @if (old('satuan', $satuan->satuans) == $satuan->id)
-                  <option value="{{ $satuan->id }}" selected>{{ $satuan->satuan }}</option>
-                  @else
-                  <option value="{{ $satuan->id }}">{{ $satuan->satuan }}</option>
-                  @endif
+                    <option value="{{ $satuan->id }}">{{ $satuan->satuan }}</option>
                   @endforeach
                 </select>
               </div>

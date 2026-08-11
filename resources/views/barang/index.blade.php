@@ -84,7 +84,7 @@
         $('#store').click(function(e) {
             e.preventDefault();
 
-            let gambar = $('#gambar')[0].files[0];
+            let gambar = $('#gambar')[0].files && $('#gambar')[0].files[0] ? $('#gambar')[0].files[0] : null;
             let nama_barang = $('#nama_barang').val();
             let stok_minimum = $('#stok_minimum').val();
             let jenis_id = $('#jenis_id').val();
@@ -93,7 +93,9 @@
             let token = $("meta[name='csrf-token']").attr("content");
 
             let formData = new FormData();
-            formData.append('gambar', gambar);
+            if (gambar) {
+                formData.append('gambar', gambar);
+            }
             formData.append('nama_barang', nama_barang);
             formData.append('stok_minimum', stok_minimum);
             formData.append('jenis_id', jenis_id);
@@ -276,7 +278,7 @@
             e.preventDefault();
 
             let barang_id = $('#barang_id').val();
-            let gambar = $('#edit_gambar')[0].files[0];
+            let gambar = $('#edit_gambar')[0].files && $('#edit_gambar')[0].files[0] ? $('#edit_gambar')[0].files[0] : null;
             let nama_barang = $('#edit_nama_barang').val();
             let stok_minimum = $('#edit_stok_minimum').val();
             let deskripsi = $('#edit_deskripsi').val();
@@ -287,7 +289,9 @@
 
             // Buat objek FormData
             let formData = new FormData();
-            formData.append('gambar', gambar);
+            if (gambar) {
+                formData.append('gambar', gambar);
+            }
             formData.append('nama_barang', nama_barang);
             formData.append('stok_minimum', stok_minimum);
             formData.append('deskripsi', deskripsi);
