@@ -1,255 +1,374 @@
-<x-guest-layout>
-    <div class="auth-shell">
-        <div class="auth-panel">
-            <div class="auth-hero">
-                <div class="auth-badge">Gudang TK. Farida</div>
-                <h1>Kelola Gudang Lebih Cepat, Aman, dan Terorganisir</h1>
-                <p>Monitor stok, barang masuk, dan distribusi dari satu tempat dengan tampilan yang clean dan modern.</p>
-            </div>
-
-            <div class="auth-card">
-                <div class="auth-header">
-                    <h2>Welcome Back</h2>
-                    <p>Masuk untuk mengelola stok, barang masuk, dan distribusi secara lebih rapi.</p>
-                </div>
-
-                <!-- Session Status -->
-                <x-auth-session-status class="mb-4" :status="session('status')" />
-
-                <form method="POST" action="{{ route('login') }}" class="auth-form">
-                    @csrf
-
-                    <div class="form-group">
-                        <x-input-label for="email" :value="__('Email')" />
-                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                    </div>
-
-                    <div class="form-group mt-4">
-                        <x-input-label for="password" :value="__('Password')" />
-                        <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                    </div>
-
-                    <div class="block mt-4">
-                        <label for="remember_me" class="inline-flex items-center">
-                            <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-amber-500 shadow-sm focus:ring-amber-500" name="remember">
-                            <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-                        </label>
-                    </div>
-
-                    <div class="flex items-center justify-end mt-5">
-                        <x-primary-button class="w-full justify-center">
-                            {{ __('Log in') }}
-                        </x-primary-button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Login - Gudang TK. Farida</title>
     <style>
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        .auth-shell {
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 16px;
-            background:
-                radial-gradient(circle at 15% 25%, rgba(245, 166, 35, 0.18), transparent 25%),
-                radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.05), transparent 25%),
-                linear-gradient(100deg, #040407 0%, #0d0d17 40%, #151521 70%, #0f0f1a 100%);
+            padding: 20px;
         }
 
-        .auth-panel {
-            width: 100%;
-            max-width: 1280px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            border-radius: 28px;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.038);
-            border: 1px solid rgba(255, 255, 255, 0.09);
-            box-shadow: 0 32px 120px rgba(0, 0, 0, 0.48);
-            backdrop-filter: blur(18px);
-            min-height: 520px;
+        .accent {
+            color: #f5a623;
         }
 
-        .auth-hero {
-            padding: 64px 56px;
-            background:
-                radial-gradient(ellipse at 100% 50%, rgba(245, 166, 35, 0.25), transparent 35%),
-                linear-gradient(125deg, #0f0f1a 0%, #18182a 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        /* ===== LOGIN CONTAINER ===== */
+        .login-wrapper {
             position: relative;
-            overflow: hidden;
+            width: 100%;
+            max-width: 450px;
         }
 
-        .auth-hero::before {
+        .login-wrapper::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(245, 166, 35, 0.08), transparent 70%);
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(245, 166, 35, 0.1), transparent 70%);
             border-radius: 50%;
-            pointer-events: none;
+            z-index: -1;
         }
 
-        .auth-hero > * {
-            position: relative;
-            z-index: 2;
+        .login-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 32px;
+            padding: 50px 40px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
-        .auth-badge {
-            display: inline-block;
-            padding: 7px 16px;
-            border-radius: 999px;
-            background: rgba(245, 166, 35, 0.2);
-            color: #f5a623;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .login-header .logo {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            margin-bottom: 18px;
-            width: fit-content;
-            border: 1px solid rgba(245, 166, 35, 0.3);
+            color: #ffffff;
+            margin-bottom: 8px;
         }
 
-        .auth-hero h1 {
-            color: #fff;
-            font-size: 40px;
-            font-weight: 800;
-            line-height: 1.12;
-            margin-bottom: 16px;
-            max-width: 480px;
-            letter-spacing: -0.5px;
+        .login-header .logo .accent {
+            color: #f5a623;
         }
 
-        .auth-hero p {
-            color: rgba(255, 255, 255, 0.74);
-            font-size: 15px;
-            line-height: 1.7;
-            max-width: 420px;
-        }
-
-        .auth-card {
-            padding: 56px 48px;
-            background: rgba(255, 255, 255, 0.025);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border-left: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .auth-header {
-            margin-bottom: 28px;
-        }
-
-        .auth-header h2 {
-            color: #fff;
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 10px;
-            letter-spacing: -0.3px;
-        }
-
-        .auth-header p {
-            color: rgba(255, 255, 255, 0.68);
+        .login-header p {
             font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 8px;
+        }
+
+        /* ===== FORM STYLING ===== */
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group:last-of-type {
+            margin-bottom: 12px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(245, 166, 35, 0.5);
+            box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.1);
+        }
+
+        input[type="email"]::placeholder,
+        input[type="password"]::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ===== REMEMBER & ACTIONS ===== */
+        .form-remember {
+            display: flex;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #f5a623;
+        }
+
+        .checkbox-wrapper label {
+            margin: 0;
+            margin-left: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+        }
+
+        /* ===== BUTTON ===== */
+        .btn-login {
+            width: 100%;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, #f5a623, #e8961a);
+            color: #0a0a0f;
+            font-weight: 700;
+            font-size: 15px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(245, 166, 35, 0.35);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        /* ===== ERROR MESSAGE ===== */
+        .alert {
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
             line-height: 1.6;
         }
 
-        .auth-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
         }
 
-        .auth-form .form-group label {
-            color: #fff;
-            font-weight: 600;
+        .error-text {
+            font-size: 12px;
+            color: #fca5a5;
+            margin-top: 6px;
+        }
+
+        /* ===== LINK ===== */
+        .login-footer {
+            text-align: center;
+            margin-top: 24px;
             font-size: 13px;
-            margin-bottom: 8px;
-            display: block;
         }
 
-        .auth-form input {
-            border-radius: 12px !important;
-            border: 1px solid rgba(255, 255, 255, 0.12) !important;
-            background: rgba(255, 255, 255, 0.05) !important;
-            color: #fff !important;
-            padding: 10px 14px !important;
-            font-size: 14px !important;
+        .login-footer a {
+            color: #f5a623;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
         }
 
-        .auth-form input::placeholder {
-            color: rgba(255, 255, 255, 0.35) !important;
+        .login-footer a:hover {
+            color: #f7c948;
         }
 
-        .auth-form input:focus {
-            border-color: rgba(245, 166, 35, 0.4) !important;
-            background: rgba(255, 255, 255, 0.08) !important;
-            outline: none !important;
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            body {
+                padding: 16px;
+            }
+
+            .login-card {
+                padding: 36px 24px;
+            }
+
+            .login-header .logo {
+                font-size: 24px;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            input[type="email"],
+            input[type="password"] {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+
+            .btn-login {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
         }
 
-        @media (max-width: 1024px) {
-            .auth-panel {
-                grid-template-columns: 1fr;
-                min-height: auto;
-            }
-
-            .auth-hero {
-                padding: 40px 36px;
-            }
-
-            .auth-card {
-                padding: 36px;
-                border-left: none;
-                border-top: 1px solid rgba(255, 255, 255, 0.06);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .auth-shell {
-                padding: 12px;
-            }
-
-            .auth-panel {
-                border-radius: 18px;
-            }
-
-            .auth-hero {
+        @media (max-width: 480px) {
+            .login-card {
                 padding: 28px 20px;
             }
 
-            .auth-hero h1 {
-                font-size: 26px;
+            .login-header .logo {
+                font-size: 20px;
             }
 
-            .auth-hero p {
+            .login-header p {
+                font-size: 12px;
+            }
+
+            .form-group {
+                margin-bottom: 18px;
+            }
+
+            input[type="email"],
+            input[type="password"] {
+                padding: 11px 12px;
                 font-size: 13px;
             }
 
-            .auth-card {
-                padding: 24px 20px;
+            .btn-login {
+                padding: 11px 18px;
+                font-size: 13px;
             }
 
-            .auth-header h2 {
-                font-size: 24px;
+            label {
+                font-size: 13px;
             }
         }
     </style>
-</x-guest-layout>
+</head>
+<body>
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <!-- Header -->
+            <div class="login-header">
+                <div class="logo">Gudang <span class="accent">TK. Farida</span></div>
+                <p>Sistem Manajemen Gudang Minuman</p>
+            </div>
+
+            <!-- Status Message -->
+            @if (session('status'))
+                <div class="alert alert-danger">
+                    {{ session('status') }}
+                </div>
+            @endif
+
+            <!-- Login Form -->
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+
+                <!-- Email Address -->
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input 
+                        id="email" 
+                        type="email" 
+                        name="email" 
+                        value="{{ old('email') }}" 
+                        placeholder="Masukkan email Anda"
+                        required 
+                        autofocus 
+                        autocomplete="username"
+                    />
+                    @if ($errors->has('email'))
+                        <div class="error-text">
+                            {{ $errors->first('email') }}
+                        </div>
+                    @endif
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        id="password" 
+                        type="password" 
+                        name="password" 
+                        placeholder="Masukkan password Anda"
+                        required 
+                        autocomplete="current-password"
+                    />
+                    @if ($errors->has('password'))
+                        <div class="error-text">
+                            {{ $errors->first('password') }}
+                        </div>
+                    @endif
+                </div>
+
+                <!-- Remember Me -->
+                <div class="form-remember">
+                    <div class="checkbox-wrapper">
+                        <input 
+                            id="remember" 
+                            type="checkbox" 
+                            name="remember"
+                        />
+                        <label for="remember">Remember me</label>
+                    </div>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="btn-login">Log In</button>
+
+                <!-- Footer Link -->
+                <div class="login-footer">
+                    Belum punya akun? <a href="{{ route('register') }}">Daftar di sini</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

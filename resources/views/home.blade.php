@@ -194,12 +194,9 @@
             align-items: center;
             justify-content: space-between;
             padding: 120px 60px 80px;
-            background:
-                radial-gradient(circle at top right, rgba(245, 166, 35, 0.18), transparent 30%),
-                linear-gradient(135deg, #0a0a0f 0%, #171722 100%);
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
             position: relative;
             overflow: hidden;
-            box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.04);
         }
 
         .hero::before {
@@ -282,15 +279,15 @@
         }
 
         .main-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
-            border: 1px solid rgba(245, 166, 35, 0.22);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 32px;
             padding: 50px 40px;
             text-align: center;
             max-width: 400px;
             position: relative;
             backdrop-filter: blur(12px);
-            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
         }
 
         .main-card .bg-icon {
