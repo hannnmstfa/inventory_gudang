@@ -498,52 +498,111 @@
         /* ===== TEAM ===== */
         .team-section {
             padding: 80px 60px;
-            background: #0a0a0f;
+            background:
+                radial-gradient(circle at 70% 10%, rgba(245, 166, 35, 0.10), transparent 30%),
+                linear-gradient(135deg, #0a0a0f 0%, #15151d 100%);
+        }
+
+        .team-header {
+            max-width: 760px;
+        }
+
+        .team-header .tag {
+            margin-bottom: 20px;
+        }
+
+        .team-header h2 {
+            font-size: 40px;
+            font-weight: 800;
+            line-height: 1.16;
+            color: #fff;
         }
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 30px;
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .team-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 24px;
-            padding: 36px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 28px;
+            padding: 38px 34px;
             text-align: center;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 340px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 1px solid rgba(245, 166, 35, 0.3);
+            top: -70px;
+            right: -18px;
         }
 
         .team-card:hover {
             transform: translateY(-6px);
-            border-color: rgba(245, 166, 35, 0.3);
+            border-color: rgba(245, 166, 35, 0.60);
+            box-shadow: 0 20px 45px rgba(245, 166, 35, 0.10);
         }
 
         .team-card .avatar {
-            font-size: 56px;
-            margin-bottom: 8px;
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 38px;
+            background: linear-gradient(135deg, rgba(245, 166, 35, 0.2), rgba(255,255,255,0.05));
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .team-card h5 {
-            font-size: 20px;
-            font-weight: 700;
+            font-size: 25px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.2;
+            color: #fff;
+            letter-spacing: 0.02em;
         }
 
         .team-card .role {
-            font-size: 14px;
+            font-size: 15px;
             color: #f5a623;
-            font-weight: 600;
-            margin-bottom: 12px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .team-card p {
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.58);
             line-height: 1.8;
             font-size: 14px;
+            margin-top: 6px;
+        }
+
+        .team-card .role-bar {
+            width: 52px;
+            height: 3px;
+            background: linear-gradient(135deg, #f5a623, #ffcf73);
+            border-radius: 99px;
+            margin: 0 auto 16px;
         }
 
         /* ===== SERVICE ===== */
@@ -1016,20 +1075,20 @@ Terus meningkatkan kualitas pelayanan, profesionalisme, dan inovasi untuk memenu
         <div class="team-grid">
             <div class="team-card">
                 <div class="avatar">👤</div>
+                <div class="role-bar"></div>
                 <h5>MOHAMMAD QOMARUZZAMAN</h5>
                 <div class="role">CEO &amp; Founder</div>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam.
+                    Memimpin arah strategis perusahaan serta menjaga hubungan dan kepercayaan pelanggan dalam menjalankan bisnis distribusi.
                 </p>
             </div>
             <div class="team-card">
                 <div class="avatar">👤</div>
+                <div class="role-bar"></div>
                 <h5>yazid alwani</h5>
                 <div class="role">Web Developer</div>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam.
+                    Mengembangkan dan menjaga sistem website serta platform digital yang mendukung operasional dan pelayanan Gudang TK. Farida.
                 </p>
             </div>
         </div>
