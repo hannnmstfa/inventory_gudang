@@ -257,13 +257,11 @@
                 cache: false,
                 success: function(response) {
                     $('#barang_id').val(response.data.id);
-                    $('#edit_gambar').val(null);
                     $('#edit_nama_barang').val(response.data.nama_barang);
                     $('#edit_stok_minimum').val(response.data.stok_minimum);
                     $('#edit_jenis_id').val(response.data.jenis_id);
                     $('#edit_satuan_id').val(response.data.satuan_id);
                     $('#edit_deskripsi').val(response.data.deskripsi);
-                    $('#edit_gambar_preview').attr('src', '/storage/' + response.data.gambar);
 
                     $('#modal_edit_barang').modal('show');
                 }
@@ -275,7 +273,6 @@
             e.preventDefault();
 
             let barang_id = $('#barang_id').val();
-            let gambar = $('#edit_gambar')[0].files && $('#edit_gambar')[0].files[0] ? $('#edit_gambar')[0].files[0] : null;
             let nama_barang = $('#edit_nama_barang').val();
             let stok_minimum = $('#edit_stok_minimum').val();
             let deskripsi = $('#edit_deskripsi').val();
@@ -283,12 +280,8 @@
             let satuan_id = $('#edit_satuan_id').val();
             let token = $("meta[name='csrf-token']").attr("content");
 
-
             // Buat objek FormData
             let formData = new FormData();
-            if (gambar) {
-                formData.append('gambar', gambar);
-            }
             formData.append('nama_barang', nama_barang);
             formData.append('stok_minimum', stok_minimum);
             formData.append('deskripsi', deskripsi);
@@ -320,32 +313,20 @@
                     // Memperbarui data pada kolom nomor urutan (indeks 0)
                     rowData.eq(0).text(row.index() + 1);
 
-                    // Memperbarui data pada kolom gambar (indeks 1)
-                    let imageColumn = rowData.eq(1).find('img');
-                    imageColumn.attr('src', `/storage/${response.data.gambar}`);
+                    // Memperbarui data pada kolom kode barang (indeks 1)
+                    rowData.eq(1).text(response.data.kode_barang);
 
-                    // Memperbarui data pada kolom kode barang (indeks 2)
-                    rowData.eq(2).text(response.data.kode_barang);
+                    // Memperbarui data pada kolom nama barang (indeks 2)
+                    rowData.eq(2).text(response.data.nama_barang);
 
-                    // Memperbarui data pada kolom nama barang (indeks 3)
-                    rowData.eq(3).text(response.data.nama_barang);
-
-                    // Memperbarui data pada kolom stok (indeks 4)
+                    // Memperbarui data pada kolom stok (indeks 3)
                     let stok = response.data.stok != null ? response.data.stok : "Stok Kosong";
-                    rowData.eq(4).text(stok);
+                    rowData.eq(3).text(stok);
 
                     $('#modal_edit_barang').modal('hide');
                 },
 
                 error: function(error) {
-                    if (error.responseJSON && error.responseJSON.gambar && error.responseJSON.gambar[
-                            0]) {
-                        $('#alert-gambar').removeClass('d-none');
-                        $('#alert-gambar').addClass('d-block');
-
-                        $('#alert-gambar').html(error.responseJSON.gambar[0]);
-                    }
-
                     if (error.responseJSON && error.responseJSON.nama_barang && error.responseJSON
                         .nama_barang[0]) {
                         $('#alert-nama_barang').removeClass('d-none');
