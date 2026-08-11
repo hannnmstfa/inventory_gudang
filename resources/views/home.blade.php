@@ -1016,7 +1016,7 @@ Terus meningkatkan kualitas pelayanan, profesionalisme, dan inovasi untuk memenu
         <div class="team-grid">
             <div class="team-card">
                 <div class="avatar">👤</div>
-                <h5>Alfredo Torres</h5>
+                <h5>MOHAMMAD QOMARUZZAMAN</h5>
                 <div class="role">CEO &amp; Founder</div>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -1025,17 +1025,8 @@ Terus meningkatkan kualitas pelayanan, profesionalisme, dan inovasi untuk memenu
             </div>
             <div class="team-card">
                 <div class="avatar">👤</div>
-                <h5>Daniel Gallego</h5>
-                <div class="role">Operations Director</div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam.
-                </p>
-            </div>
-            <div class="team-card">
-                <div class="avatar">👤</div>
-                <h5>Maria Santos</h5>
-                <div class="role">Logistics Manager</div>
+                <h5>yazid alwani</h5>
+                <div class="role">Web Developer</div>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua. Ut enim ad minim veniam.
