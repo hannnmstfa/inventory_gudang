@@ -58,37 +58,42 @@
             align-items: center;
             justify-content: center;
             padding: 24px;
-            background: linear-gradient(135deg, #0a0a0f 0%, #171722 100%);
+            background:
+                radial-gradient(circle at 20% 20%, rgba(245, 166, 35, 0.16), transparent 24%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.06), transparent 22%),
+                linear-gradient(120deg, #06060a 0%, #10101b 45%, #171722 100%);
         }
 
         .auth-panel {
-            width: min(1120px, 100%);
+            width: min(1200px, 100%);
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            border-radius: 30px;
+            grid-template-columns: 1.2fr 0.8fr;
+            border-radius: 32px;
             overflow: hidden;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(14px);
+            box-shadow: 0 24px 90px rgba(0, 0, 0, 0.42);
+            backdrop-filter: blur(16px);
         }
 
         .auth-hero {
-            padding: 48px;
+            padding: 56px;
             background:
-                radial-gradient(circle at top right, rgba(245, 166, 35, 0.2), transparent 30%),
+                radial-gradient(circle at right center, rgba(245, 166, 35, 0.22), transparent 28%),
                 linear-gradient(135deg, #11111a 0%, #1a1a27 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
+            min-height: 560px;
         }
 
         .auth-hero h1 {
             color: #fff;
-            font-size: 34px;
+            font-size: 36px;
             font-weight: 800;
-            line-height: 1.2;
+            line-height: 1.15;
             margin-bottom: 14px;
+            max-width: 520px;
         }
 
         .auth-hero p {
@@ -99,8 +104,11 @@
         }
 
         .auth-card {
-            padding: 36px;
+            padding: 40px 36px;
             background: rgba(255, 255, 255, 0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .auth-header {
@@ -148,6 +156,7 @@
 
             .auth-hero {
                 padding: 30px 30px 18px;
+                min-height: auto;
             }
 
             .auth-card {
