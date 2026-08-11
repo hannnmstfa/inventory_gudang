@@ -954,14 +954,12 @@
     <!-- ===== HERO / HOME ===== -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <div class="hero-badge">Gudang TK. Farida</div>
+            <div class="hero-badge">Gudang Minuman TK. Farida</div>
             <h1>
-                <span class="highlight">Gudang TK. Farida</span>
+                <span class="highlight">Gudang Minuman Terpercaya untuk Distribusi Cepat</span>
             </h1>
             <p class="hero-desc">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Menyediakan penyimpanan aman, stok terkontrol, dan distribusi produk minuman yang cepat serta efisien untuk toko, minimarket, restoran, dan pelaku usaha. Kami hadir untuk memastikan setiap kebutuhan pasokan Anda selalu terpenuhi dengan kualitas terbaik.
             </p>
             <div class="hero-actions">
                 <a href="#service" class="btn-primary">Explore Now</a>
