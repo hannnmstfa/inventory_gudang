@@ -27,6 +27,9 @@ use App\Http\Controllers\UbahPasswordController;
 */
 
 Route::get('/', function () {
+    if (auth()->check()) {
+        return redirect('/dashboard');
+    }
     return app(HomeController::class)->index();
 })->name('home');
 
