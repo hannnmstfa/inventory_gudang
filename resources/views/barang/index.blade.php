@@ -22,7 +22,6 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Gambar</th>
                                     <th>Kode Barang</th>
                                     <th>Nama Barang</th>
                                     <th>Stok</th>
@@ -57,7 +56,6 @@
                         let barang = `
                 <tr class="barang-row" id="index_${value.id}">
                     <td>${counter++}</td>
-                    <td><img src="/storage/${value.gambar}" alt="gambar Barang" style="width: 150px"; height="150px"></td>
                     <td>${value.kode_barang}</td>
                     <td>${value.nama_barang}</td>
                     <td>${stok}</td>
@@ -135,7 +133,6 @@
                                 let barang = `
                             <tr class="barang-row" id="index_${value.id}">
                                 <td>${counter++}</td>
-                                <td><img src="/storage/${value.gambar}" alt="gambar Barang" style="width: 150px"; height="150px"></td>
                                 <td>${value.kode_barang}</td>
                                 <td>${value.nama_barang}</td>
                                 <td>${stok}</td>
@@ -440,7 +437,6 @@
                                         let barang = `
                                         <tr class="barang-row" id="index_${value.id}">
                                             <td>${counter++}</td>
-                                            <td><img src="/storage/${value.gambar}" alt="gambar Barang" style="width: 150px"; height="150px"></td>
                                             <td>${value.kode_barang}</td>
                                             <td>${value.nama_barang}</td>
                                             <td>${stok}</td>
