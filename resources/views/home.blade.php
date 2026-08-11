@@ -1079,7 +1079,7 @@ Terus meningkatkan kualitas pelayanan, profesionalisme, dan inovasi untuk memenu
                 <h5>MOHAMMAD QOMARUZZAMAN</h5>
                 <div class="role">CEO &amp; Founder</div>
                 <p>
-                    Memimpin arah strategis perusahaan serta menjaga hubungan dan kepercayaan pelanggan dalam menjalankan bisnis distribusi.
+                    Menyusun arah bisnis, mengawasi operasional gudang, dan menjaga hubungan baik dengan pelanggan serta mitra usaha.
                 </p>
             </div>
             <div class="team-card">
@@ -1088,7 +1088,7 @@ Terus meningkatkan kualitas pelayanan, profesionalisme, dan inovasi untuk memenu
                 <h5>yazid alwani</h5>
                 <div class="role">Web Developer</div>
                 <p>
-                    Mengembangkan dan menjaga sistem website serta platform digital yang mendukung operasional dan pelayanan Gudang TK. Farida.
+                    Membangun, mengelola, dan merawat website Gudang TK. Farida agar sistem informasi dan pelayanan digital berjalan dengan optimal.
                 </p>
             </div>
         </div>
