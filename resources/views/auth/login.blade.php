@@ -7,12 +7,6 @@
                 <p>Masuk untuk mengelola stok, barang masuk, dan distribusi secara lebih rapi.</p>
             </div>
 
-            <div class="demo-box">
-                <span class="demo-title">Demo Login</span>
-                <p><strong>Email:</strong> superadmin@gmail.com</p>
-                <p><strong>Password:</strong> •••••</p>
-            </div>
-
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -101,30 +95,6 @@
             line-height: 1.7;
         }
 
-        .demo-box {
-            margin: 18px 0 20px;
-            padding: 14px 16px;
-            border-radius: 14px;
-            background: rgba(245, 166, 35, 0.08);
-            border: 1px solid rgba(245, 166, 35, 0.2);
-            color: #f7d58e;
-        }
-
-        .demo-title {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            color: #f5a623;
-            margin-bottom: 8px;
-        }
-
-        .demo-box p {
-            margin: 2px 0;
-            font-size: 14px;
-        }
-
         .auth-form .form-group label {
             color: #fff;
         }
@@ -134,8 +104,22 @@
         }
 
         @media (max-width: 640px) {
+            .auth-shell {
+                padding: 12px;
+                align-items: stretch;
+            }
+
             .auth-card {
-                padding: 24px;
+                padding: 20px;
+                border-radius: 18px;
+            }
+
+            .auth-header h2 {
+                font-size: 24px;
+            }
+
+            .auth-header p {
+                font-size: 13px;
             }
         }
     </style>
