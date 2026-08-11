@@ -20,7 +20,7 @@ class BarangMasukController extends Controller
     {
         return view('barang-masuk.index', [
             'barangs'      => Barang::all(),
-            'barangsMasuk' => BarangMasuk::all(),
+            'barangsMasuk' => BarangMasuk::orderByDesc('tanggal_masuk')->orderByDesc('created_at')->get(),
             'suppliers'    => Supplier::all()
         ]);
     }
@@ -29,7 +29,7 @@ class BarangMasukController extends Controller
     {
         return response()->json([
             'success'   => true,
-            'data'      => BarangMasuk::all(),
+            'data'      => BarangMasuk::orderByDesc('tanggal_masuk')->orderByDesc('created_at')->get(),
             'supplier'  => Supplier::all()
         ]);
     }

@@ -19,7 +19,7 @@ class BarangKeluarController extends Controller
     {
         return view('barang-keluar.index', [
             'barangs'           => Barang::all(),
-            'barangKeluar'      => BarangKeluar::all(),
+            'barangKeluar'      => BarangKeluar::orderByDesc('tanggal_keluar')->orderByDesc('created_at')->get(),
             'customers'         => Customer::all()
         ]);
     }
@@ -28,7 +28,7 @@ class BarangKeluarController extends Controller
     {
         return response()->json([
             'success'   => true,
-            'data'      => BarangKeluar::all(),
+            'data'      => BarangKeluar::orderByDesc('tanggal_keluar')->orderByDesc('created_at')->get(),
             'customer'  => Customer::all()
         ]);
     }
