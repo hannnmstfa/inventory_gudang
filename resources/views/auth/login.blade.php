@@ -1,46 +1,53 @@
 <x-guest-layout>
     <div class="auth-shell">
-        <div class="auth-card">
-            <div class="auth-header">
+        <div class="auth-panel">
+            <div class="auth-hero">
                 <div class="auth-badge">Gudang TK. Farida</div>
-                <h2>Welcome Back</h2>
-                <p>Masuk untuk mengelola stok, barang masuk, dan distribusi secara lebih rapi.</p>
+                <h1>Kelola Gudang Lebih Cepat, Aman, dan Terorganisir</h1>
+                <p>Monitor stok, barang masuk, dan distribusi dari satu tempat dengan tampilan yang clean dan modern.</p>
             </div>
 
-            <!-- Session Status -->
-            <x-auth-session-status class="mb-4" :status="session('status')" />
-
-            <form method="POST" action="{{ route('login') }}" class="auth-form">
-                @csrf
-
-                <div class="form-group">
-                    <x-input-label for="email" :value="__('Email')" />
-                    <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h2>Welcome Back</h2>
+                    <p>Masuk untuk mengelola stok, barang masuk, dan distribusi secara lebih rapi.</p>
                 </div>
 
-                <div class="form-group mt-4">
-                    <x-input-label for="password" :value="__('Password')" />
-                    <x-text-input id="password" class="block mt-1 w-full"
-                        type="password"
-                        name="password"
-                        required autocomplete="current-password" />
-                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                </div>
+                <!-- Session Status -->
+                <x-auth-session-status class="mb-4" :status="session('status')" />
 
-                <div class="block mt-4">
-                    <label for="remember_me" class="inline-flex items-center">
-                        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-amber-500 shadow-sm focus:ring-amber-500" name="remember">
-                        <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-                    </label>
-                </div>
+                <form method="POST" action="{{ route('login') }}" class="auth-form">
+                    @csrf
 
-                <div class="flex items-center justify-end mt-5">
-                    <x-primary-button class="w-full justify-center">
-                        {{ __('Log in') }}
-                    </x-primary-button>
-                </div>
-            </form>
+                    <div class="form-group">
+                        <x-input-label for="email" :value="__('Email')" />
+                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <x-input-label for="password" :value="__('Password')" />
+                        <x-text-input id="password" class="block mt-1 w-full"
+                            type="password"
+                            name="password"
+                            required autocomplete="current-password" />
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    </div>
+
+                    <div class="block mt-4">
+                        <label for="remember_me" class="inline-flex items-center">
+                            <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-amber-500 shadow-sm focus:ring-amber-500" name="remember">
+                            <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-end mt-5">
+                        <x-primary-button class="w-full justify-center">
+                            {{ __('Log in') }}
+                        </x-primary-button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -54,15 +61,46 @@
             background: linear-gradient(135deg, #0a0a0f 0%, #171722 100%);
         }
 
-        .auth-card {
-            width: 100%;
-            max-width: 460px;
-            padding: 32px;
-            border-radius: 24px;
+        .auth-panel {
+            width: min(1120px, 100%);
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            border-radius: 30px;
+            overflow: hidden;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(12px);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(14px);
+        }
+
+        .auth-hero {
+            padding: 48px;
+            background:
+                radial-gradient(circle at top right, rgba(245, 166, 35, 0.2), transparent 30%),
+                linear-gradient(135deg, #11111a 0%, #1a1a27 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .auth-hero h1 {
+            color: #fff;
+            font-size: 34px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+
+        .auth-hero p {
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 15px;
+            line-height: 1.8;
+            max-width: 460px;
+        }
+
+        .auth-card {
+            padding: 36px;
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .auth-header {
@@ -79,7 +117,7 @@
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         .auth-header h2 {
@@ -103,15 +141,44 @@
             border-radius: 12px;
         }
 
+        @media (max-width: 900px) {
+            .auth-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-hero {
+                padding: 30px 30px 18px;
+            }
+
+            .auth-card {
+                padding: 30px;
+            }
+        }
+
         @media (max-width: 640px) {
             .auth-shell {
                 padding: 12px;
                 align-items: stretch;
             }
 
+            .auth-panel {
+                border-radius: 18px;
+            }
+
+            .auth-hero {
+                padding: 22px 20px 16px;
+            }
+
+            .auth-hero h1 {
+                font-size: 24px;
+            }
+
+            .auth-hero p {
+                font-size: 13px;
+            }
+
             .auth-card {
                 padding: 20px;
-                border-radius: 18px;
             }
 
             .auth-header h2 {
