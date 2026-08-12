@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logistic - Smart Stays, Seamless Service</title>
+    <title>Logistic -92 Smart Stays, Seamless Service</title>
     <style>
         /* ===== RESET & BASE ===== */
         * {
