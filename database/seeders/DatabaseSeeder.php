@@ -46,14 +46,6 @@ class DatabaseSeeder extends Seeder
             'password'  => bcrypt('1234'),
             'role_id'   => 3
         ]);
-
-        Supplier::create([
-            'supplier'      => 'PT Hanstd',
-            'alamat'        => 'Ds. Jleper, Kec. Mijèn, Kab. Demak, 03/05
-Phone: +62 821-3518-1255
-Website: https://inventory.hanstd.com',
-            'user_id'       => 1
-        ]);
         
         Role::create([
             'role'      => 'superadmin',

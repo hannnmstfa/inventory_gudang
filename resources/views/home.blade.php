@@ -1162,6 +1162,10 @@ Terus meningkatkan kualitas pelayanan, profesionalisme, dan inovasi untuk memenu
                     <span class="label">Website</span>
                     <span class="value"><a href="https://inventory.hanstd.com" target="_blank" rel="noopener noreferrer">https://inventory.hanstd.com</a></span>
                 </div>
+                <div class="contact-detail">
+                    <span class="label">Alamat</span>
+                    <span class="value">Ds. Jleper<br>Kec. Mijèn<br>Kab. Demak<br>03/05</span>
+                </div>
             </div>
             <div class="contact-visual">
                 <div class="icon">📞</div>
