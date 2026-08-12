@@ -46,46 +46,6 @@ class DatabaseSeeder extends Seeder
             'password'  => bcrypt('1234'),
             'role_id'   => 3
         ]);
-
-        Jenis::create([
-            'jenis_barang'  => 'pupuk cair',
-            'user_id'       => 1
-        ]);
-        Jenis::create([
-            'jenis_barang'  => 'pupuk Kimia',
-            'user_id'       => 1
-        ]);
-
-        Satuan::create([
-            'satuan'        => 'Kwintal',
-            'user_id'       => 1
-        ]);
-        Satuan::create([
-            'satuan'        => 'Liter',
-            'user_id'       => 1
-        ]);
-
-        Supplier::create([
-            'supplier'      => 'PT Petrokimia Gresik',
-            'alamat'        => 'Gresik, Jawa Timur',
-            'user_id'       => 1
-        ]);
-        Supplier::create([
-            'supplier'      => 'PT Pupuk Indonesia',
-            'alamat'        => 'Jakarta',
-            'user_id'       => 1
-        ]);
-
-        Customer::create([
-            'customer'      => 'CV Konco Tani',
-            'alamat'        => 'Suronegaran, Jawa Tengah',
-            'user_id'       => 1
-        ]);
-        Customer::create([
-            'customer'      => 'CV Harapan Tani',
-            'alamat'        => 'Baledono, Jawa Tengah',
-            'user_id'       => 1
-        ]);
         
         Role::create([
             'role'      => 'superadmin',
