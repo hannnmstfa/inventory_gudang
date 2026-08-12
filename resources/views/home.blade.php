@@ -1164,7 +1164,7 @@ Terus meningkatkan kualitas pelayanan, profesionalisme, dan inovasi untuk memenu
                 </div>
                 <div class="contact-detail">
                     <span class="label">Alamat</span>
-                    <span class="value">Ds. Jleper<br>Kec. Mijèn<br>Kab. Demak<br>03/05</span>
+                    <span class="value">Ds. Jleper, Kec. Mijèn, Kab. Demak, 03/05</span>
                 </div>
             </div>
             <div class="contact-visual">
