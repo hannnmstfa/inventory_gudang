@@ -1160,7 +1160,7 @@ Terus meningkatkan kualitas pelayanan, profesionalisme, dan inovasi untuk memenu
                 </div>
                 <div class="contact-detail">
                     <span class="label">Website</span>
-                    <span class="value"><a href="https://gudang-tk-farida.hanstd.com/" target="_blank" rel="noopener noreferrer">https://inventory.hanstd.com</a></span>
+                    <span class="value"><a href="https://gudang-tk-farida.hanstd.com/" target="_blank" rel="noopener noreferrer">https://gudang-tk-farida.hanstd.com/</a></span>
                 </div>
                 <div class="contact-detail">
                     <span class="label">Alamat</span>
