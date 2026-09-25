@@ -22,20 +22,18 @@ class DashboardController extends Controller
         $userCount          = User::all()->count();
         $barangMasukPerBulan = BarangMasuk::selectRaw('DATE_FORMAT(tanggal_masuk, "%Y-%m") as date, SUM(jumlah_masuk) as total')
             ->groupBy('date')
-            ->get()
-            ->map(function ($data) {
-                $data->date = date('Y-m', strtotime($data->date));
-                $data->total = (int) $data->total;
-                return $data;
-        });
+            ->pluck('total', 'date')
+            ->map(fn ($total) => (int) $total);
         $barangKeluarPerBulan = BarangKeluar::selectRaw('DATE_FORMAT(tanggal_keluar, "%Y-%m") as date, SUM(jumlah_keluar) as total')
             ->groupBy('date')
-            ->get()
-            ->map(function ($data) {
-                $data->date = date('Y-m', strtotime($data->date));
-                $data->total = (int) $data->total;
-                return $data;
-        });
+            ->pluck('total', 'date')
+            ->map(fn ($total) => (int) $total);
+
+        $chartMonths = $barangMasukPerBulan->keys()
+            ->merge($barangKeluarPerBulan->keys())
+            ->unique()
+            ->sort()
+            ->values();
     
         $barangMinimum = Barang::all();
 
@@ -44,8 +42,9 @@ class DashboardController extends Controller
             'barangMasuk'       => $barangMasukCount,
             'barangKeluar'      => $barangKeluarCount,
             'user'              => $userCount,
-            'barangMasukData'   => $barangMasukPerBulan,
-            'barangKeluarData'  => $barangKeluarPerBulan,
+            'chartMonths'       => $chartMonths,
+            'barangMasukData'   => $chartMonths->map(fn ($month) => $barangMasukPerBulan->get($month, 0)),
+            'barangKeluarData'  => $chartMonths->map(fn ($month) => $barangKeluarPerBulan->get($month, 0)),
             'barangMinimum'     => $barangMinimum
         ]);
     }
