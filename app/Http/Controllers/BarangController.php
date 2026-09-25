@@ -182,9 +182,11 @@ class BarangController extends Controller
      */
     public function destroy(Barang $barang)
     {
-        unlink('.'.Storage::url($barang->gambar));
-    
-        Barang::destroy($barang->id);
+        if ($barang->gambar) {
+            Storage::disk('public')->delete($barang->gambar);
+        }
+
+        $barang->delete();
 
         return response()->json([
             'success' => true,
