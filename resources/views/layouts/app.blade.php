@@ -163,6 +163,149 @@
       color: #8b98a8 !important;
     }
 
+    .theme-toggle {
+      width: 42px;
+      height: 42px;
+      margin-right: 8px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: #202833;
+      color: #ffd166;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover,
+    .theme-toggle:focus {
+      background: #303b4a;
+      color: #ffffff;
+      outline: none;
+    }
+
+    body.theme-light,
+    body.theme-light .main-wrapper,
+    body.theme-light .main-content {
+      background: #f5f7fb !important;
+      color: #293241;
+    }
+
+    body.theme-light .navbar-bg,
+    body.theme-light .main-navbar {
+      background: #ffffff !important;
+    }
+
+    body.theme-light .main-navbar .nav-link,
+    body.theme-light .main-navbar .nav-link-user,
+    body.theme-light .main-navbar .nav-link-user div {
+      color: #293241 !important;
+    }
+
+    body.theme-light .main-sidebar {
+      background: #ffffff !important;
+      border-right-color: #e4e8ef;
+    }
+
+    body.theme-light .sidebar-brand,
+    body.theme-light .sidebar-brand a,
+    body.theme-light .sidebar-menu .menu-header,
+    body.theme-light .sidebar-menu li a {
+      color: #657184 !important;
+    }
+
+    body.theme-light .sidebar-menu li a:hover,
+    body.theme-light .sidebar-menu li.active > a,
+    body.theme-light .sidebar-menu li a.active {
+      background: #f0f3f8 !important;
+      color: #2f5bea !important;
+    }
+
+    body.theme-light .sidebar-menu .dropdown-menu,
+    body.theme-light .card,
+    body.theme-light .modal-content,
+    body.theme-light .dropdown-menu,
+    body.theme-light .main-footer,
+    body.theme-light .list-group-item {
+      background: #ffffff !important;
+      border-color: #e4e8ef !important;
+    }
+
+    body.theme-light .card-header,
+    body.theme-light .card-footer,
+    body.theme-light .modal-header,
+    body.theme-light .modal-footer {
+      background: #fafbfc !important;
+      border-color: #e4e8ef !important;
+    }
+
+    body.theme-light .section-header h1,
+    body.theme-light .section-header h2,
+    body.theme-light .section-header h3,
+    body.theme-light .section-header h4,
+    body.theme-light .card,
+    body.theme-light .card-header h4,
+    body.theme-light .card-body,
+    body.theme-light .card-footer,
+    body.theme-light label,
+    body.theme-light .form-group,
+    body.theme-light .table,
+    body.theme-light .table th,
+    body.theme-light .table td,
+    body.theme-light .modal-title,
+    body.theme-light .close,
+    body.theme-light .dropdown-item {
+      color: #293241 !important;
+    }
+
+    body.theme-light .table thead th,
+    body.theme-light .table tbody td,
+    body.theme-light .table th,
+    body.theme-light .table td {
+      border-color: #e4e8ef !important;
+    }
+
+    body.theme-light .table-striped tbody tr:nth-of-type(odd),
+    body.theme-light .table-hover tbody tr:hover {
+      background: #f7f9fc !important;
+      color: #293241;
+    }
+
+    body.theme-light .form-control,
+    body.theme-light .custom-select,
+    body.theme-light select,
+    body.theme-light textarea,
+    body.theme-light input {
+      background-color: #ffffff !important;
+      border-color: #d8dee8 !important;
+      color: #293241 !important;
+    }
+
+    body.theme-light .form-control:focus,
+    body.theme-light .custom-select:focus,
+    body.theme-light select:focus,
+    body.theme-light textarea:focus,
+    body.theme-light input:focus {
+      background-color: #ffffff !important;
+      border-color: #6c8cff !important;
+      color: #293241 !important;
+    }
+
+    body.theme-light .dropdown-item:hover,
+    body.theme-light .dropdown-item:focus {
+      background: #f0f3f8 !important;
+      color: #293241 !important;
+    }
+
+    body.theme-light .theme-toggle {
+      background: #eef1f6;
+      color: #344054;
+    }
+
+    body.theme-light .theme-toggle:hover,
+    body.theme-light .theme-toggle:focus {
+      background: #dfe5ee;
+      color: #1f2937;
+    }
+
     @media (max-width: 767.98px) {
       .main-wrapper {
         overflow-x: hidden;
@@ -269,6 +412,11 @@
 <!-- /END GA --></head>
 
 <body>
+  <script>
+    if (localStorage.getItem('inventory-theme') === 'light') {
+      document.body.classList.add('theme-light');
+    }
+  </script>
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
       <div class="navbar-bg"></div>
@@ -279,7 +427,11 @@
           </ul>
         </form>
         <ul class="navbar-nav navbar-right">
-          
+          <li>
+            <button type="button" class="theme-toggle nav-link" id="theme-toggle" title="Ganti tema" aria-label="Ganti tema">
+              <i class="fas fa-sun"></i>
+            </button>
+          </li>
 
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
@@ -476,6 +628,25 @@
 
   
   <script>
+    (function() {
+      var themeToggle = document.getElementById('theme-toggle');
+      var themeIcon = themeToggle.querySelector('i');
+
+      function updateThemeIcon() {
+        var isLight = document.body.classList.contains('theme-light');
+        themeIcon.className = isLight ? 'fas fa-moon' : 'fas fa-sun';
+        themeToggle.setAttribute('aria-label', isLight ? 'Gunakan tema gelap' : 'Gunakan tema putih');
+        themeToggle.setAttribute('title', isLight ? 'Gunakan tema gelap' : 'Gunakan tema putih');
+      }
+
+      updateThemeIcon();
+      themeToggle.addEventListener('click', function() {
+        var isLight = document.body.classList.toggle('theme-light');
+        localStorage.setItem('inventory-theme', isLight ? 'light' : 'dark');
+        updateThemeIcon();
+      });
+    })();
+
     $(document).ready(function() {
       var currentPath = window.location.pathname;
   
