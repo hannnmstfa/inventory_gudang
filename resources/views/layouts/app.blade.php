@@ -156,7 +156,7 @@
                 <i class="fa fa-sharp fa-solid fa-lock"></i> Ubah Password
               </a>
               <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{{ route('logout') }}"
+                  <a class="dropdown-item" href="/logout"
                     onclick="event.preventDefault();
                                 Swal.fire({
                                     title: 'Konfirmasi Keluar',
@@ -173,7 +173,7 @@
                                   });">
                                <i class="fas fa-sign-out-alt"></i> {{ __('Keluar') }}
                               </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    <form id="logout-form" action="/logout" method="POST" class="d-none">
                         @csrf
                     </form>
                   </a>
