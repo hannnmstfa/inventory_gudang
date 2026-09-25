@@ -2,7 +2,6 @@
 
 @include('barang.create')
 @include('barang.edit')
-@include('barang.show')
 
 @section('content')
     <div class="section-header">
@@ -24,7 +23,6 @@
                                     <th>No</th>
                                     <th>Kode Barang</th>
                                     <th>Nama Barang</th>
-                                    <th>Foto Barang</th>
                                     <th>Stok</th>
                                     <th>Opsi</th>
                                 </tr>
@@ -54,15 +52,11 @@
                     $('#table_id').DataTable().clear();
                     $.each(response.data, function(key, value) {
                         let stok = value.stok != null ? value.stok : "Stok Kosong";
-                        let gambar = value.gambar ? '/storage/' + value.gambar : 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" fill="#f3f4f6"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#6b7280" font-size="10" font-family="Arial">No Image</text></svg>');
                         let barang = `
                 <tr class="barang-row" id="index_${value.id}">
                     <td>${counter++}</td>
                     <td>${value.kode_barang}</td>
                     <td>${value.nama_barang}</td>
-                    <td>
-                        <img src="${gambar}" alt="Foto Barang" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; border: 1px solid #e5e7eb; background: #f9fafb;">
-                    </td>
                     <td>${stok}</td>
                     <td>
                         <a href="javascript:void(0)" id="button_edit_barang" data-id="${value.id}" class="btn btn-icon btn-warning btn-lg mb-2"><i class="far fa-edit"></i> </a>
@@ -134,15 +128,11 @@
                             $.each(response.data, function(key, value) {
                                 let stok = value.stok != null ? value.stok :
                                     "Stok Kosong";
-                                let gambar = value.gambar ? '/storage/' + value.gambar : 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" fill="#f3f4f6"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#6b7280" font-size="10" font-family="Arial">No Image</text></svg>');
                                 let barang = `
                             <tr class="barang-row" id="index_${value.id}">
                                 <td>${counter++}</td>
                                 <td>${value.kode_barang}</td>
                                 <td>${value.nama_barang}</td>
-                                <td>
-                                    <img src="${gambar}" alt="Foto Barang" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; border: 1px solid #e5e7eb; background: #f9fafb;">
-                                </td>
                                 <td>${stok}</td>
                                 <td>
                                     <a href="javascript:void(0)" id="button_edit_barang" data-id="${value.id}" class="btn btn-icon btn-warning btn-lg mb-2"><i class="far fa-edit"></i> </a>
@@ -220,24 +210,6 @@
 
                         $('#alert-deskripsi').html(error.responseJSON.deskripsi[0]);
                     }
-                }
-            });
-        });
-    </script>
-
-    <!-- Show Detail Data Barang -->
-    <script>
-        $('body').on('click', '#button_detail_barang', function() {
-            let barang_id = $(this).data('id');
-
-            $.ajax({
-                url: `/barang/${barang_id}/`,
-                type: "GET",
-                cache: false,
-                success: function(response) {
-                    $('#barang_id').val(response.data.id);
-                    $('#detail_gambar_preview').attr('src', '/storage/' + response.data.gambar);
-                    $('#modal_detail_barang').modal('show');
                 }
             });
         });
@@ -413,15 +385,11 @@
                                     $.each(response.data, function(key, value) {
                                         let stok = value.stok != null ?
                                             value.stok : "Stok Kosong";
-                                                let gambar = value.gambar ? '/storage/' + value.gambar : 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" fill="#f3f4f6"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#6b7280" font-size="10" font-family="Arial">No Image</text></svg>');
                                                 let barang = `
                                         <tr class="barang-row" id="index_${value.id}">
                                             <td>${counter++}</td>
                                             <td>${value.kode_barang}</td>
                                             <td>${value.nama_barang}</td>
-                                            <td>
-                                                <img src="${gambar}" alt="Foto Barang" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; border: 1px solid #e5e7eb; background: #f9fafb;">
-                                            </td>
                                             <td>${stok}</td>
                                             <td>
                                                 <a href="javascript:void(0)" id="button_edit_barang" data-id="${value.id}" class="btn btn-icon btn-warning btn-lg mb-2"><i class="far fa-edit"></i> </a>
