@@ -29,6 +29,103 @@
 
   <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.4.1/css/dataTables.dateTime.min.css">
 
+  <style>
+    @media (max-width: 767.98px) {
+      .main-wrapper {
+        overflow-x: hidden;
+      }
+
+      .main-sidebar {
+        width: 82vw;
+        max-width: 280px;
+        left: -82vw;
+      }
+
+      body.sidebar-show .main-sidebar {
+        left: 0;
+      }
+
+      body.sidebar-gone .main-sidebar {
+        left: -82vw;
+      }
+
+      .main-content {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        padding-top: 70px !important;
+      }
+
+      .main-footer {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+      }
+
+      .navbar {
+        padding: 10px 15px !important;
+      }
+
+      .navbar form.form-inline {
+        width: 100%;
+      }
+
+      .search-element {
+        display: none;
+      }
+
+      .navbar-nav.navbar-right {
+        margin-left: auto;
+      }
+
+      .nav-link.nav-link-lg {
+        padding: .5rem !important;
+      }
+
+      .main-sidebar .sidebar-menu li a {
+        min-height: 50px;
+        height: auto;
+      }
+
+      .main-sidebar .sidebar-menu li ul.dropdown-menu li a {
+        padding-left: 50px;
+      }
+
+      .table-responsive,
+      .card,
+      .card-body {
+        overflow-x: auto;
+      }
+    }
+
+    @media (max-width: 575.98px) {
+      .main-sidebar {
+        width: 85vw;
+        max-width: 260px;
+        left: -85vw;
+      }
+
+      body.sidebar-show .main-sidebar {
+        left: 0;
+      }
+
+      body.sidebar-gone .main-sidebar {
+        left: -85vw;
+      }
+
+      .nav-link.nav-link-user .d-sm-none {
+        display: none !important;
+      }
+
+      .nav-link.nav-link-user img {
+        margin-right: 0 !important;
+      }
+
+      .sidebar-brand a {
+        letter-spacing: 0.8px;
+        font-size: 14px;
+      }
+    }
+  </style>
+
   <!-- Start GA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
   <script>
