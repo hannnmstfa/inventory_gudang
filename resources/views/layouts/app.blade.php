@@ -30,6 +30,139 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.4.1/css/dataTables.dateTime.min.css">
 
   <style>
+    body,
+    .main-wrapper,
+    .main-content {
+      background: #0d1117 !important;
+      color: #e6edf3;
+    }
+
+    .navbar-bg,
+    .main-navbar {
+      background: #090c10 !important;
+    }
+
+    .main-navbar .nav-link,
+    .main-navbar .nav-link-user,
+    .main-navbar .nav-link-user div {
+      color: #e6edf3 !important;
+    }
+
+    .main-sidebar {
+      background: #11161e !important;
+      border-right: 1px solid #252c36;
+    }
+
+    .sidebar-brand,
+    .sidebar-brand a,
+    .sidebar-menu .menu-header,
+    .sidebar-menu li a {
+      color: #e6edf3 !important;
+    }
+
+    .sidebar-menu li a:hover,
+    .sidebar-menu li.active > a,
+    .sidebar-menu li a.active {
+      background: #202833 !important;
+      color: #ffffff !important;
+    }
+
+    .sidebar-menu .dropdown-menu {
+      background: #171d26 !important;
+    }
+
+    .sidebar-menu .dropdown-menu li a {
+      color: #c9d1d9 !important;
+    }
+
+    .section-header h1,
+    .section-header h2,
+    .section-header h3,
+    .section-header h4,
+    .card,
+    .card-header h4,
+    .card-body,
+    .card-footer,
+    label,
+    .form-group,
+    .table,
+    .table th,
+    .table td {
+      color: #e6edf3;
+    }
+
+    .card,
+    .modal-content,
+    .dropdown-menu,
+    .main-footer,
+    .list-group-item {
+      background: #161b22 !important;
+      border-color: #303844 !important;
+    }
+
+    .card-header,
+    .card-footer,
+    .modal-header,
+    .modal-footer {
+      background: #1b222c !important;
+      border-color: #303844 !important;
+    }
+
+    .table thead th,
+    .table tbody td,
+    .table th,
+    .table td {
+      border-color: #303844 !important;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd),
+    .table-hover tbody tr:hover {
+      background: #1e2630 !important;
+      color: #ffffff;
+    }
+
+    .form-control,
+    .custom-select,
+    select,
+    textarea,
+    input {
+      background-color: #202731 !important;
+      border-color: #3a4654 !important;
+      color: #e6edf3 !important;
+    }
+
+    .form-control::placeholder,
+    textarea::placeholder,
+    input::placeholder {
+      color: #8b98a8 !important;
+    }
+
+    .form-control:focus,
+    .custom-select:focus,
+    select:focus,
+    textarea:focus,
+    input:focus {
+      background-color: #252e39 !important;
+      border-color: #6c8cff !important;
+      color: #ffffff !important;
+    }
+
+    .dropdown-item,
+    .modal-title,
+    .close {
+      color: #e6edf3 !important;
+    }
+
+    .dropdown-item:hover,
+    .dropdown-item:focus {
+      background: #252e39 !important;
+      color: #ffffff !important;
+    }
+
+    .main-footer {
+      color: #8b98a8 !important;
+    }
+
     @media (max-width: 767.98px) {
       .main-wrapper {
         overflow-x: hidden;
