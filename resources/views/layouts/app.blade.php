@@ -30,6 +30,35 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.4.1/css/dataTables.dateTime.min.css">
 
   <style>
+    .main-navbar .search-element {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 290px;
+      height: 38px;
+    }
+
+    .main-navbar .search-element .form-control {
+      width: 100% !important;
+      height: 38px;
+      padding-right: 44px;
+      box-sizing: border-box;
+    }
+
+    .main-navbar .search-element .btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 44px;
+      height: 38px;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 0 4px 4px 0;
+    }
+
     @media (max-width: 767.98px) {
       .main-wrapper {
         overflow-x: hidden;
