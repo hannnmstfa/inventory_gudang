@@ -80,7 +80,6 @@
         $('#store').click(function(e) {
             e.preventDefault();
 
-            let gambar = $('#gambar')[0].files && $('#gambar')[0].files[0] ? $('#gambar')[0].files[0] : null;
             let nama_barang = $('#nama_barang').val();
             let stok_minimum = $('#stok_minimum').val();
             let jenis_id = $('#jenis_id').val();
@@ -89,9 +88,6 @@
             let token = $("meta[name='csrf-token']").attr("content");
 
             let formData = new FormData();
-            if (gambar) {
-                formData.append('gambar', gambar);
-            }
             formData.append('nama_barang', nama_barang);
             formData.append('stok_minimum', stok_minimum);
             formData.append('jenis_id', jenis_id);
@@ -144,8 +140,6 @@
                                     false);
                             });
 
-                            $('#gambar').val('');
-                            $('#preview').attr('src', '');
                             $('#nama_barang').val('');
                             $('#stok_minimum').val('');
                             $('#deskripsi').val('');
@@ -163,14 +157,6 @@
                 },
 
                 error: function(error) {
-                    if (error.responseJSON && error.responseJSON.gambar && error.responseJSON.gambar[
-                            0]) {
-                        $('#alert-gambar').removeClass('d-none');
-                        $('#alert-gambar').addClass('d-block');
-
-                        $('#alert-gambar').html(error.responseJSON.gambar[0]);
-                    }
-
                     if (error.responseJSON && error.responseJSON.nama_barang && error.responseJSON
                         .nama_barang[0]) {
                         $('#alert-nama_barang').removeClass('d-none');
@@ -416,13 +402,6 @@
         })
     </script>
 
-
-    <!-- Preview Image -->
-    <script>
-        function previewImage() {
-            preview.src = URL.createObjectURL(event.target.files[0]);
-        }
-    </script>
 
     <script>
         function previewImageEdit() {

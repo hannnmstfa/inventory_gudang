@@ -55,35 +55,22 @@ class BarangController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_barang'   => 'required',
             'deskripsi'     => 'required',
-            'gambar'        => 'required|mimes:jpeg,png,jpg',
             'stok_minimum'  => 'required|numeric',
             'jenis_id'      => 'required',
             'satuan_id'     => 'required'
         ], [
             'nama_barang.required'  => 'Form Nama Barang Wajib Di Isi !',
             'deskripsi.required'    => 'Form Deskripsi Wajib Di Isi !',
-            'gambar.required'       => 'Tambahkan Gambar !',
-            'gambar.mimes'          => 'Gunakan Gambar Yang Memiliki Format jpeg, png, jpg !',
             'stok_minimum.required' => 'Form Stok Minimum Wajib Di Isi !',
             'stok_minimum.numeric'  => 'Gunakan Angka Untuk Mengisi Form Ini !',
             'jenis_id.required'     => 'Pilih Jenis Barang !',
             'satuan_id.required'    => 'Pilih Jenis Barang !'
         ]);
 
-        if ($request->hasFile('gambar')) 
-        {
-            $path       = 'gambar-barang/';
-            $file       = $request->file('gambar');
-            $fileName   = $file->getClientOriginalName();
-            $gambar     = $file->storeAs($path, $fileName, 'public');
-        } else{
-            $gambar = null;
-        }
-          
         $kode_barang = 'BRG-' . str_pad(rand(1, 99999), 5, '0', STR_PAD_LEFT);
         $request->merge([
             'kode_barang'   => $kode_barang,
-            'gambar'        => $gambar,
+            'gambar'        => '',
             'user_id'       => auth()->user()->id,
         ]);
 
@@ -96,7 +83,7 @@ class BarangController extends Controller
             'deskripsi'   => $request->deskripsi,
             'user_id'     => $request->user_id,
             'kode_barang' => $request->kode_barang,
-            'gambar'      => $path . $fileName,
+            'gambar'      => '',
             'stok_minimum'=> $request->stok_minimum,
             'jenis_id'    => $request->jenis_id,
             'satuan_id'   => $request->satuan_id
