@@ -229,15 +229,6 @@
                 cache: false,
                 success: function(response) {
                     $('#barang_id').val(response.data.id);
-                    $('#detail_gambar').val(null);
-                    $('#detail_nama_barang').val(response.data.nama_barang);
-                    $('#detail_jenis_id').val(response.data.jenis_id);
-                    $('#detail_satuan_id').val(response.data.satuan_id);
-                    $('#detail_stok').val(response.data.stok !== null && response.data.stok !== '' ?
-                        response.data.stok : 'Stok Kosong');
-                    $('#detail_stok_minimum').val(response.data.stok_minimum);
-                    $('#detail_deskripsi').val(response.data.deskripsi);
-
                     $('#detail_gambar_preview').attr('src', '/storage/' + response.data.gambar);
                     $('#modal_detail_barang').modal('show');
                 }
