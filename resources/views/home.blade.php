@@ -933,7 +933,7 @@
     <nav class="navbar" id="navbar">
         <div class="container">
             <div class="navbar-brand">
-                <a href="#home" class="logo">vilmorgay</a>
+                <a href="#home" class="logo">Gudang <span class="accent">TK. Farida</span></a>
             </div>
             <button class="navbar-toggler" id="navbarToggler" aria-label="Toggle navigation">
                 <span></span>
